@@ -1,0 +1,12 @@
+.idea
+/target
+
+client/target
+
+/project/project
+/project/target
+
+/shared/.js
+/shared/.jvm
+
+server/target

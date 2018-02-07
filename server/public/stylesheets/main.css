@@ -1,0 +1,23 @@
+body {
+  background-color: #000;
+}
+
+button {
+  color: #FFF;
+  padding: 5px;
+  font-weight: bold;
+  border-radius: 100%;
+  font-size: 30px;
+  background-color: #000;
+}
+
+button:hover {
+    text-shadow: 0 0 10px #FFF;
+    background-color: #111;
+}
+
+p {
+  color: #FFF;
+  font-family: 'Press Start 2P', cursive;
+}
+
