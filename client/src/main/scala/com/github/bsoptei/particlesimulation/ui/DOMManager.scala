@@ -17,7 +17,8 @@ import com.github.bsoptei.particlesimulation.helpers._
 
 class DOMManager() {
 
-  private lazy val canvas: Canvas = #=#[Canvas](document.getElementsByTagName("canvas")(0))
+
+  private lazy val canvas: Canvas = #=#[Canvas]($("canvas").get(0))
   private lazy val ctx2D: CanvasRenderingContext2D = #=#[CanvasRenderingContext2D](canvas.getContext("2d"))
 
   def init(): Unit = $(document).ready(
