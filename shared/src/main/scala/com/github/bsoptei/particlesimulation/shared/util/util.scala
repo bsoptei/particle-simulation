@@ -1,9 +1,8 @@
 package com.github.bsoptei.particlesimulation.shared
 
-package object util {
+import com.github.bsoptei.particlesimulation.shared.model.Point3D
 
-  // TODO Move this to a configuration or somewhere else
-  val maxZ: Int = 50
+package object util {
 
   object implicits {
     implicit def d2i(d: Double): Int = d.toInt
@@ -21,5 +20,6 @@ package object util {
     case _ => xs.sum / xs.size
   }
 
-  val cw, ch = 500
+  val constraints = Point3D(500, 500, 50)
+
 }

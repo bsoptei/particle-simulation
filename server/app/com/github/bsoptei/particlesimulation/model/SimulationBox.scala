@@ -5,7 +5,6 @@ import com.github.bsoptei.particlesimulation.shared.model.{Particle, Point3D, Si
 import com.github.bsoptei.particlesimulation.shared.util._
 import com.github.bsoptei.particlesimulation.shared.util.implicits._
 
-
 import scala.annotation.tailrec
 
 class SimulationBox(simulationInput: SimulationInput) {
@@ -27,9 +26,9 @@ class SimulationBox(simulationInput: SimulationInput) {
   private def moveAll(particles: Iterable[Particle]) = particles.map{ particle =>
     particle.move(
       Point3D(
-        calcNew(particle.pos.x, movFromTemp(), cw),
-        calcNew(particle.pos.y, movFromTemp() + gravEffect, ch),
-        calcNew(particle.pos.z, movFromTemp(), maxZ)
+        calcNew(particle.pos.x, movFromTemp(), constraints.x),
+        calcNew(particle.pos.y, movFromTemp() + gravEffect, constraints.y),
+        calcNew(particle.pos.z, movFromTemp(), constraints.z)
       )
     )
   }
@@ -73,9 +72,9 @@ object SimulationBox {
       List.fill(n)(
         Particle(
           Point3D(
-            rni(cw),
-            rni(ch),
-            rni(maxZ) + 1
+            rni(constraints.x),
+            rni(constraints.y),
+            rni(constraints.z) + 1
           )
           ,
           rni(25) + 10
