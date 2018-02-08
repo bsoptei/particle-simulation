@@ -1,15 +1,7 @@
 package com.github.bsoptei.particlesimulation.ui
 
-object InputManager {
+class InputManager() {
     import natEnv._
-
-  private var inp   = 100
-  private var steps = 100
-
-  def getInp:   Int = inp
-  def getSteps: Int = steps
-
-  def simulationargs = s"$temperature/$specificGravity/$inp/$steps"
 
   def incTemp(i : Int) = {
     if ((i >= 0) || (i < 0 && temperature + i >= 0)) {

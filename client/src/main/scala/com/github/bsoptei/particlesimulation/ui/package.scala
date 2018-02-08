@@ -9,6 +9,7 @@ package object ui {
   type DomActionUnit = JQueryEventObject => Unit
 
   private[ui] val natEnv = NaturalEnvironment(1, 0)
-
+  private[ui] var inp   = 100
+  private[ui] var steps = 100
 
 }

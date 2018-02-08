@@ -18,6 +18,7 @@ lazy val server = (project in file("server")).settings(commonSettings).settings(
 lazy val client = (project in file("client")).settings(commonSettings).settings(
   scalaJSUseMainModuleInitializer := true,
   libraryDependencies ++= Seq(
+    "com.softwaremill.macwire" %% "macros" % "2.3.0",
     "org.scala-js" %%% "scalajs-dom" % "0.9.1",
     "be.doeraene" %%% "scalajs-jquery" % "0.9.1",
     "com.github.benhutchison" %%% "prickle" % "1.1.13"

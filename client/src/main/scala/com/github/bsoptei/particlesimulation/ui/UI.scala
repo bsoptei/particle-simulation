@@ -3,22 +3,23 @@ package com.github.bsoptei.particlesimulation.ui
 import com.github.bsoptei.particlesimulation.components._
 import org.scalajs.dom.XMLHttpRequest
 import org.scalajs.dom.ext.Ajax
-
 import com.github.bsoptei.particlesimulation.shared.util.implicits._
+import com.github.bsoptei.particlesimulation.wiring.UIModule
 
 import scala.concurrent.Future
 
-object UI {
+class UI() extends UIModule {
 
   import natEnv._
 
-  def init(): Unit = DOMManager.init()
+  def init(): Unit = theDomManager.init()
 
-  def update(response: String): Unit = DOMManager.update(response)
+  def update(response: String): Unit = theDomManager.update(response)
+  def simulationargs = s"$temperature/$specificGravity/$inp/$steps"
 
   def sendSimulationRequest(): Future[XMLHttpRequest] = {
-    val req = Ajax.get(s"http://localhost:9000/simulate/${ InputManager.simulationargs }")
-    DOMManager.setIndicator("status", "Waiting for results...")
+    val req = Ajax.get(s"http://localhost:9000/simulate/$simulationargs")
+    theDomManager.setIndicator("status", "Waiting for results...")
     req
   }
 
@@ -26,16 +27,17 @@ object UI {
 
     uct match {
       case Temp =>
-        InputManager.incTemp(i)
-        DOMManager.setIndicator("temperature", temperature)
+        theInputManager.incTemp(i)
+        theDomManager.setIndicator("temperature", temperature)
       case Grav =>
-        InputManager.incGrav(i)
-        DOMManager.setIndicator("gravity", specificGravity)
+        theInputManager.incGrav(i)
+        theDomManager.setIndicator("gravity", specificGravity)
       case Inps =>
-        InputManager.incInp(i)
-        DOMManager.setIndicator("inp", InputManager.getInp)
-      case Step => InputManager.incSteps(i)
-        DOMManager.setIndicator("steps", InputManager.getSteps)
+        theInputManager.incInp(i)
+        theDomManager.setIndicator("inp", inp)
+      case Step =>
+        theInputManager.incSteps(i)
+        theDomManager.setIndicator("steps", steps)
 
     }
   }

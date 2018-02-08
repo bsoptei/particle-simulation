@@ -4,11 +4,10 @@ import com.github.bsoptei.particlesimulation.shared.model.Particle
 import org.scalajs.dom.html.Canvas
 import org.scalajs.dom.{CanvasRenderingContext2D, document}
 import org.scalajs.jquery._
-import prickle.Unpickle
+import prickle._
 import com.github.bsoptei.particlesimulation.shared.util._
 import com.github.bsoptei.particlesimulation.shared.util.implicits._
 import com.github.bsoptei.particlesimulation.stats.Stats
-import com.github.bsoptei.particlesimulation.ui.InputManager._
 
 import com.github.bsoptei.particlesimulation.exportedfunctions.ExportedFunctions._
 
@@ -16,7 +15,7 @@ import natEnv._
 
 import com.github.bsoptei.particlesimulation.helpers._
 
-object DOMManager {
+class DOMManager() {
 
   private lazy val canvas: Canvas = #=#[Canvas](document.getElementsByTagName("canvas")(0))
   private lazy val ctx2D: CanvasRenderingContext2D = #=#[CanvasRenderingContext2D](canvas.getContext("2d"))
@@ -69,8 +68,8 @@ object DOMManager {
   private def initIndicators(): Unit = {
     setIndicator("temperature", temperature)
     setIndicator("gravity", specificGravity)
-    setIndicator("inp", getInp)
-    setIndicator("steps", getSteps)
+    setIndicator("inp", inp)
+    setIndicator("steps", steps)
     setIndicator("status", "Ready")
     setIndicator("stats", "")
   }

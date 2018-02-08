@@ -1,9 +1,9 @@
 package com.github.bsoptei.particlesimulation
 
-import com.github.bsoptei.particlesimulation.ui.UI
+import com.github.bsoptei.particlesimulation.wiring.TopLevelModule
 
-object Main {
+object Main extends TopLevelModule {
 
-  def main(args: Array[String]): Unit = UI.init()
+  def main(args: Array[String]): Unit = ui.init()
 
 }
