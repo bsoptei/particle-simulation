@@ -1,5 +1,7 @@
 package com.github.bsoptei.particlesimulation.stats
 
+import com.github.bsoptei.particlesimulation.shared.util.implicits._
+
 object Stats {
 
   def stats[T](xs: Iterable[T])(f: T => Double): String = {
@@ -7,6 +9,11 @@ object Stats {
     val wonderfulness = xs.map(f)
     val mean = wonderfulness.sum / size
 
-    s"Number of items: $size| Mean: $mean| Largest: ${wonderfulness.max} Smallest: ${wonderfulness.min}"
+    Map[String, String](
+      "numOfItems" -> size,
+      "mean"       -> mean,
+      "max"        -> s"${wonderfulness.max}",
+      "min"        -> s"${wonderfulness.min}"
+    ).toString
   }
 }
