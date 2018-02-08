@@ -6,6 +6,7 @@ import org.scalajs.dom.{CanvasRenderingContext2D, document}
 import org.scalajs.jquery._
 import prickle._
 import com.github.bsoptei.particlesimulation.shared.util.implicits._
+import com.github.bsoptei.particlesimulation.shared.util.implicits.ANY._
 import com.github.bsoptei.particlesimulation.stats.Stats
 
 import com.github.bsoptei.particlesimulation.exportedfunctions.ExportedFunctions._
