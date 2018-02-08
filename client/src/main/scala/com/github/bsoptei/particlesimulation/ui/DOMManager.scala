@@ -5,7 +5,6 @@ import org.scalajs.dom.html.Canvas
 import org.scalajs.dom.{CanvasRenderingContext2D, document}
 import org.scalajs.jquery._
 import prickle._
-import com.github.bsoptei.particlesimulation.shared.util._
 import com.github.bsoptei.particlesimulation.shared.util.implicits._
 import com.github.bsoptei.particlesimulation.stats.Stats
 
@@ -17,9 +16,8 @@ import com.github.bsoptei.particlesimulation.helpers._
 
 class DOMManager() {
 
-
-  private lazy val canvas: Canvas = #=#[Canvas]($("canvas").get(0))
-  private lazy val ctx2D: CanvasRenderingContext2D = #=#[CanvasRenderingContext2D](canvas.getContext("2d"))
+  private lazy val canvas: Canvas = $("canvas").get(0).as[Canvas]
+  private lazy val ctx2D: CanvasRenderingContext2D = canvas.getContext("2d").as[CanvasRenderingContext2D]
 
   def init(): Unit = $(document).ready(
     {

@@ -8,9 +8,14 @@ package object util {
     implicit def d2i(d: Double): Int = d.toInt
     implicit def d2s(d: Double): String = d.toString
     implicit def i2s(d: Int): String = d.toString
+
+    implicit class AnyOps(a: Any) {
+      def as[X]: X = a.asInstanceOf[X]
+    }
   }
 
-  def #=#[X](a: Any): X = a.asInstanceOf[X]
+
+  def as[X]: X = a.asInstanceOf[X]
 
   def sgn(n: Int): Int = if (n < 0) - 1 else if (n == 0.0) 0  else  1
 
