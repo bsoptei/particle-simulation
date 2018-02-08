@@ -5,6 +5,7 @@ import org.scalajs.dom.html.Canvas
 import org.scalajs.dom.{CanvasRenderingContext2D, document}
 import org.scalajs.jquery._
 import prickle._
+import com.github.bsoptei.particlesimulation.shared.util._
 import com.github.bsoptei.particlesimulation.shared.util.implicits._
 import com.github.bsoptei.particlesimulation.shared.util.implicits.ANY._
 import com.github.bsoptei.particlesimulation.stats.Stats
@@ -16,6 +17,8 @@ import natEnv._
 import com.github.bsoptei.particlesimulation.helpers._
 
 class DOMManager() {
+
+  private val $: JQueryStatic = jQuery
 
   private lazy val canvas: Canvas = $("canvas").get(0).as[Canvas]
   private lazy val ctx2D: CanvasRenderingContext2D = canvas.getContext("2d").as[CanvasRenderingContext2D]
@@ -61,20 +64,13 @@ class DOMManager() {
   }
 
   private def setCanvasDimensions(): Unit = {
-    canvas.width = 500
-    canvas.height = 500
+    canvas.width  = constraints.x
+    canvas.height = constraints.y
   }
 
-  private def initIndicators(): Unit = {
-    setIndicator("temperature", temperature)
-    setIndicator("gravity", specificGravity)
-    setIndicator("inp", inp)
-    setIndicator("steps", steps)
-    setIndicator("status", "Ready")
-    setIndicator("stats", "")
+  private def initIndicators(): Unit = indicator0.foreach{
+    case (id, num) => setIndicator(id, num)
   }
-
-  private val $: JQueryStatic = jQuery
 
   private def $append(objName: String)(withObj: String) = $(objName).append(withObj)
 
@@ -91,6 +87,9 @@ class DOMManager() {
     $("#simulate").text("Simulate").click(reqSimulationResults())
   }
 
+  private val appendMain = $append("main")(_)
+  private val appendBody = $append("body")(_)
+
   private def createUIElements(): Unit = {
     appendBody("<main></main>")
     itemsToAppend.foreach(appendMain)
@@ -98,10 +97,6 @@ class DOMManager() {
 
   def setIndicator(indicatorId: String, numberToShow: String): JQuery =
     $(s"#$indicatorId").text(s"${indicatorId.capitalize}: $numberToShow")
-
-
-  private val appendMain = $append("main")(_)
-  private val appendBody = $append("body")(_)
 
   private val itemsToAppend =
     Seq(
@@ -122,5 +117,15 @@ class DOMManager() {
       "<button id=\"simulate\">",
       "<canvas>"
     )
+
+  private val indicator0 = Map[String, String](
+    "temperature" -> temperature,
+    "gravity"     -> specificGravity,
+    "inp" -> inp,
+    "steps" -> steps,
+      "status" -> "Ready",
+      "stats"-> ""
+
+  )
 
 }
