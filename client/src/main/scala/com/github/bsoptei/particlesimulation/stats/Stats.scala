@@ -12,8 +12,8 @@ object Stats {
     Map[String, String](
       "numOfItems" -> size,
       "mean"       -> mean,
-      "max"        -> s"${wonderfulness.max}",
-      "min"        -> s"${wonderfulness.min}"
+      "max"        -> wonderfulness.max,
+      "min"        -> wonderfulness.min
     ).toString
   }
 }
