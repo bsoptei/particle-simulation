@@ -16,11 +16,11 @@ class SimulationBox(simulationInput: SimulationInput) {
 
   def simulate: List[List[Particle]] = {
     @tailrec
-    def loop(acc: List[List[Particle]], counter: Int): List[List[Particle]] =
-      if (counter == 0) acc
-      else loop(collide(moveAll(acc.head)).toList :: acc, counter - 1)
+    def loop(acc: List[List[Particle]]): List[List[Particle]] =
+      if (acc.size == numberOfSteps) acc
+      else loop(collide(moveAll(acc.head)).toList :: acc)
 
-    loop(initialParticleStates, numberOfSteps)
+    loop(initialParticleStates)
   }
 
   private def moveAll(particles: Iterable[Particle]) = particles.map{ particle =>
