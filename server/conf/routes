@@ -3,7 +3,7 @@
 # ~~~~
 
 # Home page
-GET        /                             com.github.bsoptei.particlesimulation.controllers.ApplicationController.index
+GET        /                                                   com.github.bsoptei.particlesimulation.controllers.ApplicationController.index
 GET        /simulate/:temp/:grav/:inp/:steps                   com.github.bsoptei.particlesimulation.controllers.ApplicationController.simulate(temp: Int, grav: Int, inp: Int, steps: Int)
 
 # Prefix must match `play.assets.urlPrefix`
